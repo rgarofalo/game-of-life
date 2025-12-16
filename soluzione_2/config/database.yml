@@ -1,0 +1,29 @@
+
+default: &default
+  adapter: postgresql
+  max_connections: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  encoding: unicode
+  timeout: 5000 
+  username: <%= Rails.application.credentials.alwaysdata[:db_username] %> # L'utente che userai per connetterti
+  password: <%= Rails.application.credentials.alwaysdata[:db_password] %> # La password per l'utente del database
+  host: postgresql-gameoflife.alwaysdata.net # O l'host del tuo server PostgreSQL
+
+development:
+  <<: *default
+  database: gameoflife_dev
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: gameoflife_dev_test
+
+
+# Store production database in the storage/ directory, which by default
+# is mounted as a persistent Docker volume in config/deploy.yml.
+production:
+  primary:
+    <<: *default
+    database: gameoflife_prod
+

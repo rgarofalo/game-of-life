@@ -1,0 +1,12 @@
+<div id="<%= dom_id game_session %>" class="w-full my-5 space-y-5">
+  <div>
+    <strong class="block font-medium mb-1">Status:</strong>
+    <span class="rounded-md text-xs font-medium  px-4 py-8 <%= game_session.status == 'active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'%>" style="padding: 4px 8px;">
+      <%= game_session.status %>
+    </span>
+  </div>
+
+  <% if game_session.world.present? %>
+    <%= render "worlds/world", world: game_session.world %>
+  <% end %>
+</div>

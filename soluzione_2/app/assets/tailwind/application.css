@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* Tell Tailwind where to scan for classes */
+@source "../../views/**/*.html.erb";
+@source "../../controllers/**/*.rb";
+@source "../../helpers/**/*.rb";
+@source "../../javascript/**/*.js";

@@ -1,0 +1,32 @@
+<div id="<%= dom_id world %>" class="space-y-4">
+  <div class="flex gap-8">
+    <div>
+      <strong class="block font-medium mb-1">Generation:</strong>
+      <%= world.number_generation || 0 %>
+    </div>
+
+    <div>
+      <strong class="block font-medium mb-1">Grid Size:</strong>
+      <%= world.rows || 0 %> x <%= world.cols || 0 %>
+    </div>
+  </div>
+
+  <% if world.grid.present? %>
+    <div>
+      <strong class="block font-medium mb-2">World Matrix:</strong>
+      <div class="inline-block border border-gray-300 rounded-md overflow-hidden">
+        <table class="border-collapse">
+          <tbody>
+            <% world.grid.each do |row| %>
+              <tr>
+                <% row.each do |cell| %>
+                  <td class="w-6 h-6 border border-gray-200 <%= cell == 1 ? 'bg-indigo-600' : 'bg-white' %>"></td>
+                <% end %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
+</div>

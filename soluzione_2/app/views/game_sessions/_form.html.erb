@@ -1,0 +1,22 @@
+<%= form_with(model: game_session, class: "contents") do |form| %>
+  <% if game_session.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+      <h2><%= pluralize(game_session.errors.count, "error") %> prohibited this game_session from being saved:</h2>
+
+      <ul class="list-disc ml-6">
+        <% game_session.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="my-5">
+    <%= form.label :world_file, "Upload File" %>
+    <%= form.file_field :world_file, accept: ".txt", class: "block mt-2 w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100" %>
+  </div>
+
+  <div class="inline">
+    <%= form.submit class: "w-full sm:w-auto rounded-md bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer", style: "padding: 10px 14px;" %>
+  </div>
+<% end %>

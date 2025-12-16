@@ -1,0 +1,19 @@
+<% content_for :title, "Showing game session" %>
+
+<div class="md:w-2/3 w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <h1 class="font-bold text-4xl">Showing game session</h1>
+
+  <%= render @game_session %>
+
+  <% if @game_session.status != 'completed' %>
+    <%= button_to "Next Generation →", world_path(@game_session.world), method: :patch, class: "w-full sm:w-auto mt-2 sm:mt-0 sm:ml-2 mb-5 text-center rounded-md bg-indigo-600 hover:bg-indigo-500 text-white inline-block font-medium cursor-pointer px-4 py-2" %>
+  <% end %>
+
+  <%= link_to "Back to game sessions", game_sessions_path, class: "w-full sm:w-auto text-center mt-2 sm:mt-0 sm:ml-2 rounded-md bg-gray-100 hover:bg-gray-50 inline-block font-medium px-4 py-2" %>
+  
+  <%= button_to "Destroy this game session", @game_session, method: :delete, form_class: "sm:inline-block mt-2 sm:mt-0 sm:ml-2", class: "w-full rounded-md px-4 py-2 text-white bg-red-600 hover:bg-red-500 font-medium cursor-pointer", data: { turbo_confirm: "Are you sure?" } %>
+</div>

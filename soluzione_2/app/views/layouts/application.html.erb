@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+  <html class="h-full bg-white">
+ <head>
+    <title><%= content_for(:title) || "Game Of Life" %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Game Of Life">
+    <meta name="mobile-web-app-capable" content="yes">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= yield :head %>
+
+    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
+    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
+
+    <link rel="icon" href="/icon.png" type="image/png">
+    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <%# Includes all stylesheet files in app/assets/stylesheets %>
+    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="h-full"> 
+        <% if user_signed_in? %>
+          <nav class="bg-indigo-600">
+            <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+              <div class="flex h-16 items-center w-full">
+                <div class="flex items-center">
+                  <%= link_to "Game Of Life", root_path, class: "text-xl font-bold text-white hover:text-indigo-200" %>
+                </div>
+                <div class="flex items-center space-x-4" style="margin-left: auto;">
+                  <span class="text-sm text-indigo-200"><%= current_user.email %></span>
+                  <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "rounded-md bg-indigo-500 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-400 cursor-pointer" %>
+                </div>
+              </div>
+            </div>
+          </nav>
+        <% else %>
+          <h1 class="text-3xl font-bold text-center mt-6">Game Of Life</h1>
+        <% end %>
+
+        <main class="flex flex-col items-center justify-center bg-white">
+          <%= yield %>
+        </main>
+  </body>
+</html>
