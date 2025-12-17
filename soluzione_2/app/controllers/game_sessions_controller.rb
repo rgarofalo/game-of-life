@@ -21,8 +21,10 @@ class GameSessionsController < ApplicationController
     @game_session.user = current_user
     @game_session.status = 'active'
 
+    world_file = params.dig(:game_session, :world_file)
+    
     # Parse uploaded world file and create World
-    if params[:game_session][:world_file].present?
+    if world_file.present?
       begin
         world = create_world_from_file(params[:game_session][:world_file])
         @game_session.world = world

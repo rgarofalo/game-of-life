@@ -66,7 +66,7 @@ Rails.application.configure do
     password: Rails.application.credentials.alwaysdata[:smtp_password],
     address: "smtp-gameoflife.alwaysdata.net",
     port: 587,
-    authentication: :plain
+    authentication: :plain,
     enable_starttls_auto: true
   }
 

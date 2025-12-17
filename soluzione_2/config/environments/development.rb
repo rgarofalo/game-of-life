@@ -38,15 +38,15 @@ Rails.application.configure do
   config.action_mailer.perform_caching = false
 
   # Set localhost to be used by links generated in mailer templates.
-  config.action_mailer.default_url_options = { host: ENV.fetch('URL_HOST') }
+  config.action_mailer.default_url_options = { host: ENV.fetch('URL_HOST', "127.0.0.1:3000") }
 
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:              ENV.fetch('SMTP_HOST'),         # Es. 'smtp.sendgrid.net'
-    port:                 ENV.fetch('SMTP_PORT').to_i,    # Es. 587
-    user_name:            ENV.fetch('SMTP_USERNAME'),
-    password:             ENV.fetch('SMTP_PASSWORD'),
+    address:              ENV.fetch('SMTP_HOST', "smtp.smtp.com"),         # Es. 'smtp.sendgrid.net'
+    port:                 ENV.fetch('SMTP_PORT',"587").to_i,    # Es. 587
+    user_name:            ENV.fetch('SMTP_USERNAME', ""),
+    password:             ENV.fetch('SMTP_PASSWORD', ""),
     authentication:       'plain', # 'login' o 'cram_md5'
     enable_starttls_auto: true
   }
